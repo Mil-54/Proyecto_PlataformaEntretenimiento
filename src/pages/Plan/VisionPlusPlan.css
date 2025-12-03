@@ -1,4 +1,4 @@
-/* Aislado completamente para VisionPlusPlan.jsx */
+
 :root {
   --vpp-bg:#0e1117;
   --vpp-panel:#141925;
@@ -12,8 +12,10 @@
 
 .vpp-body {
   margin:0;
-  color:var(--vpp-text);
-  background:var(--vpp-bg);
+  color:var(--i-text);
+  background:
+    radial-gradient(1000px 600px at 50% -10%, rgba(199,125,255,.12), transparent 70%),
+    var(--i-bg);
   font-family:"Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
@@ -116,7 +118,6 @@
   border-radius:1px;
 }
 
-/* TARJETAS DE PLANES */
 .vpp-pricing{
   padding:28px 14px 10px;
   display:grid; 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";   // ← AGREGADO
-
+import { useNavigate } from "react-router-dom";   
 const Busqueda = () => {
 
-  const navigate = useNavigate();  // ← AGREGADO
+  const navigate = useNavigate();  
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCat, setSelectedCat] = useState(null);
@@ -21,14 +20,12 @@ const Busqueda = () => {
 
   const closeSearch = () => setIsOpen(false);
 
-  // 🟣 FUNCIÓN QUE AHORA NAVEGA A TipoContenido.jsx
   const handleCategoryClick = (key) => {
     setSelectedCat(key);
 
-    // Cerrar modal
+    
     setIsOpen(false);
 
-    // Navegar a la siguiente pantalla
     navigate(`/tipocontenido?cat=${key}`);
   };
 
@@ -213,6 +210,13 @@ const Busqueda = () => {
             width: min(92%, 640px);
           }
         }
+          *{
+  box-shadow:none !important;
+}
+
+.dot{
+  display:none !important;
+}
       `}</style>
 
       <div

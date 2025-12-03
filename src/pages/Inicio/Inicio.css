@@ -1,7 +1,3 @@
-/* ================================
-   ESTILOS AISLADOS PARA INICIO
-   ================================ */
-
 :root{
   --i-bg:#0b0d13;
   --i-panel:#141925;
@@ -12,8 +8,6 @@
   --i-text:#e8eaf0;
   --i-muted:#aeb3c2;
 }
-
-/* --- layout general --- */
 .inicio-page{
   min-height:100vh;
   background:
@@ -22,8 +16,6 @@
   color:var(--i-text);
   font-family:"Nunito Sans", sans-serif;
 }
-
-/* --- NAVBAR --- */
 .inicio-navbar{
   display:flex; align-items:center;
   gap:20px;
@@ -64,7 +56,6 @@
 
 .inicio-user{ display:flex; gap:16px; }
 
-/* --- HERO --- */
 .inicio-hero{
   height:480px; position:relative; display:flex; align-items:flex-end;
 }
@@ -88,7 +79,7 @@
   margin:14px 0 24px; max-width:60ch;
 }
 
-/* --- BOTONES --- */
+
 .inicio-btn{
   padding:12px 20px; font-weight:800;
   border:none; cursor:pointer; border-radius:8px;
@@ -103,7 +94,6 @@
   color:white;
 }
 
-/* --- SECCIONES --- */
 .inicio-section{
   padding:40px 50px;
 }

@@ -13,8 +13,6 @@ const TipoContenido = () => {
   const closeModals = () => {
     setOverlayVisible(false);
   };
-
-  // ⭐ AQUÍ ES DONDE SE ARREGLA TODO
   const handleTipoClick = (tipo) => {
     navigate(`/resultados?tipo=${tipo}`);
   };
@@ -182,6 +180,13 @@ const TipoContenido = () => {
             gap: 20px;
           }
         }
+          *{
+  box-shadow:none !important;
+}
+
+.dot{
+  display:none !important;
+}
       `}</style>
 
       <div

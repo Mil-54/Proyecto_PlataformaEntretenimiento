@@ -1,4 +1,3 @@
-// src/pages/Inicio/Inicio.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Inicio.css";
@@ -7,22 +6,28 @@ export default function Inicio() {
 
   const navigate = useNavigate();
 
-  // ▶ IR AL REPRODUCTOR (PlayerPage.jsx)
+
   function goToPlayer() {
     navigate("/ver/strangerthings");
   }
 
-  // ℹ IR A DETALLES (VisionPlusDetail.jsx)
   function goToDetail() {
     navigate("/detail/strangerthings");
   }
 
-  // 👤 IR A PERFIL (VisionPlusPerfil.jsx)
+  function goToMiLista() {
+    navigate("/milista");
+  }
+
+  function goToBusqueda() {
+    navigate("/busqueda");
+  }
+
+  
   function goToPerfil() {
     navigate("/perfil");
   }
 
-  // 🔔 IR A NOTIFICACIONES (VisionPlusNotifications.jsx)
   function goToNotifications() {
     navigate("/notificaciones");
   }
@@ -30,24 +35,29 @@ export default function Inicio() {
   return (
     <div className="inicio-page">
 
-      {/* NAVBAR */}
+      {}
       <header className="inicio-navbar">
         <div className="inicio-logo">
-          <span></span> VISIONPLUS
+          VISIONPLUS
         </div>
 
         <nav className="inicio-nav">
           <a className="active">Inicio</a>
-          <a>Mi lista</a>
+          <a onClick={goToMiLista} style={{ cursor: "pointer" }}>Mi lista</a>
         </nav>
 
-        <div className="inicio-search-box">
-          <input type="text" placeholder="Buscar..." />
+        {}
+        <div className="inicio-search-box" onClick={goToBusqueda}>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            onFocus={goToBusqueda}
+            readOnly
+          />
           <button>🔍</button>
         </div>
 
         <div className="inicio-user">
-          {/* 🔥 SE AGREGARON LOS EVENTOS */}
           <div onClick={goToPerfil} style={{ cursor: "pointer" }}>
             Perfil
           </div>
@@ -57,7 +67,7 @@ export default function Inicio() {
         </div>
       </header>
 
-      {/* HERO */}
+      {}
       <section className="inicio-hero">
         <div className="inicio-hero-bg"></div>
 
@@ -86,7 +96,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* TENDENCIAS */}
+      {}
       <section className="inicio-section">
         <h2>Tendencias...</h2>
 

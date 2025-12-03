@@ -13,7 +13,7 @@ export default function VisionPlusNeon() {
     setStatus(`Gracias, revisa tu bandeja: ${email}`);
   }
 
-  // 🔥 AHORA "Ver planes" redirige a VisionPlusPlan.jsx
+
   function handlePlans() {
     navigate("/planes");
   }
@@ -72,7 +72,7 @@ export default function VisionPlusNeon() {
                 Empezar ahora
               </button>
 
-              {/* 🔥 Ahora este botón redirige */}
+              {}
               <button
                 className="btn btn-ghost"
                 type="button"
@@ -82,7 +82,7 @@ export default function VisionPlusNeon() {
               </button>
             </form>
 
-            <p className="note">Planes exclusivos para ti desde $99.</p>
+            <p className="note">Planes exclusivos para ti desde $120.</p>
 
             {status && (
               <p role="status" aria-live="polite" className="status">

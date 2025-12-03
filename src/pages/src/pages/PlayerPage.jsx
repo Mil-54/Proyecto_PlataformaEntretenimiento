@@ -1,4 +1,3 @@
-
 import { useEffect, useMemo, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
@@ -6,7 +5,8 @@ function getVideoById(id) {
   const catalog = {
     strangers2: {
       title: "Strangers: Capítulo 2 (2025)",
-      poster: "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2025/06/strangers-capitulo-2-4338497.jpg?tf=3840x",
+      poster:
+        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2025/06/strangers-capitulo-2-4338497.jpg?tf=3840x",
       sources: [{ src: "/videos/strangers2-1080.mp4", type: "video/mp4" }],
       subtitles: [],
     },
@@ -22,7 +22,7 @@ export default function PlayerPage() {
 
   const storageKey = `vp-progress:${id}`;
 
-  // Restaurar progreso
+ 
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
@@ -34,11 +34,11 @@ export default function PlayerPage() {
     return () => v.removeEventListener("loadedmetadata", onLoaded);
   }, [storageKey]);
 
-  // Guardar progreso
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    const onTime = () => localStorage.setItem(storageKey, String(v.currentTime));
+    const onTime = () =>
+      localStorage.setItem(storageKey, String(v.currentTime));
     const onEnded = () => localStorage.removeItem(storageKey);
     v.addEventListener("timeupdate", onTime);
     v.addEventListener("ended", onEnded);
@@ -50,105 +50,179 @@ export default function PlayerPage() {
 
   return (
     <div className="watch">
-      {/* ESTILOS Godzilla-like (autónomos) */}
+      {/* ESTILOS con misma paleta que INICIO */}
       <style>{`
+        /* ================================
+           PALETA GLOBAL TIPO INICIO
+           ================================ */
         :root{
-          --watch-bg:#0e1118;           /* azul-negruzco */
-          --watch-bg-deep:#0a0c13;
-          --watch-grad-1:#151a25;      /* capa superior */
-          --watch-grad-2:#0f131d;
-          --watch-purple:#8b4dff;
-          --watch-purple-2:#c057ff;
-          --watch-text:#e9e9f1;
-          --watch-muted:#b6b9c8;
-          --watch-border:rgba(255,255,255,.08);
+          --i-bg:#0b0d13;
+          --i-panel:#141925;
+          --i-panel2:#1a2030;
+          --i-purple:#9d4edd;
+          --i-purple2:#7b2cbf;
+          --i-glow:#c77dff;
+          --i-text:#e8eaf0;
+          --i-muted:#aeb3c2;
         }
+
         .watch{
           min-height:100vh;
           background:
-            radial-gradient(120% 70% at 50% -10%, rgba(139,77,255,.18) 0%, transparent 60%),
-            linear-gradient(180deg, var(--watch-grad-1) 0%, var(--watch-bg) 45%, var(--watch-bg-deep) 100%);
-          color:var(--watch-text);
-          display:flex; flex-direction:column;
+            radial-gradient(1000px 600px at 50% -10%, rgba(199,125,255,.12), transparent 70%),
+            var(--i-bg);
+          color:var(--i-text);
+          font-family:"Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          display:flex;
+          flex-direction:column;
         }
-        .watch__header{
-          position:sticky; top:0; z-index:10;
-          display:flex; align-items:center; justify-content:space-between;
-          gap:16px;
-          padding:14px clamp(12px, 2vw, 28px);
-          background: linear-gradient(90deg, rgba(26,30,44,.85), rgba(18,21,33,.85));
-          backdrop-filter: blur(6px);
-          border-bottom:1px solid var(--watch-border);
-          box-shadow: 0 8px 28px rgba(0,0,0,.35);
-        }
-        .watch__logo{
-          display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.4px;
-          color:#d3b5ff; text-shadow:0 0 12px rgba(192,87,255,.35);
-        }
-        .watch__dot{
-          width:12px; height:12px; border-radius:999px;
-          background: radial-gradient(circle at 45% 40%, #fff 0%, var(--watch-purple-2) 35%, var(--watch-purple) 70%, #4a2a9f 100%);
-          box-shadow:0 0 18px rgba(192,87,255,.9), 0 0 40px rgba(48,20,120,.6) inset;
-        }
-        .watch__actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-        .btn-primary, .btn-secondary{
-          border:none; cursor:pointer; border-radius:12px; padding:9px 16px; font-weight:700;
-          transition:.22s transform, .22s box-shadow, .22s filter;
-        }
-        .btn-primary{
-          color:#fff;
-          background: linear-gradient(90deg, var(--watch-purple) 0%, var(--watch-purple-2) 100%);
-          box-shadow: 0 8px 24px rgba(192,87,255,.35);
-        }
-        .btn-primary:hover{ transform: translateY(-1px); box-shadow:0 10px 28px rgba(192,87,255,.5); }
-        .btn-secondary{
-          color:#f2eaff; background: rgba(139,77,255,.12);
-          border:1px solid rgba(139,77,255,.35);
-        }
-        .btn-secondary:hover{ filter: brightness(1.08); }
-        .link{ color:var(--watch-muted); text-decoration:none; font-weight:600; }
-        .link:hover{ color:#f3e8ff; }
 
-        .wrap{ padding: clamp(10px, 2.2vw, 28px); }
-        .watch__panel{
-          background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)), #121620;
-          border:1px solid var(--watch-border);
-          border-radius:18px;
-          box-shadow: 0 14px 30px rgba(0,0,0,.5);
-          padding: clamp(8px, 1vw, 14px);
+        /* HEADER parecido al de INICIO */
+        .watch__header{
+          position:sticky;
+          top:0;
+          z-index:40;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:16px;
+          padding:10px 26px;
+          background:var(--i-panel);
+          border-bottom:1px solid rgba(199,125,255,.25);
+          box-shadow:0 0 20px rgba(157,78,221,.15);
         }
+
+        .watch__logo{
+          font-weight:900;
+          font-size:1.1rem;
+          display:flex;
+          align-items:center;
+          gap:8px;
+          color:var(--i-glow);
+        }
+
+        .watch__actions{
+          display:flex;
+          align-items:center;
+          gap:10px;
+          flex-wrap:wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary{
+          border:none;
+          cursor:pointer;
+          border-radius:8px;
+          padding:8px 16px;
+          font-weight:800;
+          font-size:.9rem;
+          transition:.2s transform,.2s box-shadow,.2s filter,.2s background;
+        }
+
+        .btn-primary{
+          background:linear-gradient(90deg,var(--i-purple),var(--i-purple2));
+          color:#fff;
+          box-shadow:0 6px 16px rgba(0,0,0,.45);
+          text-decoration:none;
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+        }
+        .btn-primary:hover{
+          transform:translateY(-1px);
+          box-shadow:0 10px 22px rgba(0,0,0,.6);
+        }
+
+        .btn-secondary{
+          background:var(--i-panel2);
+          color:var(--i-text);
+          border:1px solid rgba(199,125,255,.35);
+        }
+        .btn-secondary:hover{
+          background:rgba(199,125,255,.12);
+        }
+
+        .link{
+          color:var(--i-muted);
+          text-decoration:none;
+          font-weight:700;
+          font-size:.9rem;
+        }
+        .link:hover{
+          color:var(--i-text);
+        }
+
+        /* CONTENIDO */
+        .watch-main{
+          padding:32px 50px 48px;
+        }
+
+        .watch-title{
+          margin:0 0 16px;
+          font-size:clamp(20px,2.4vw,28px);
+          font-weight:800;
+        }
+
+        .watch__panel{
+          background:var(--i-panel2);
+          border-radius:16px;
+          border:1px solid rgba(255,255,255,.08);
+          box-shadow:0 12px 28px rgba(0,0,0,.55);
+          padding:12px;
+        }
+
         .video-el{
-          width:100%; height:auto; aspect-ratio:16/9; display:block; border-radius:14px;
+          width:100%;
+          height:auto;
+          aspect-ratio:16/9;
+          display:block;
+          border-radius:12px;
           background:#000;
         }
 
         /* Responsive */
+        @media (max-width: 900px){
+          .watch-main{
+            padding:20px 18px 32px;
+          }
+        }
+
         @media (max-width: 720px){
-          .watch__header{ padding:12px 14px; }
-          .btn-primary, .btn-secondary{ padding:8px 12px; }
+          .watch__header{
+            padding:10px 14px;
+            flex-wrap:wrap;
+          }
+          .watch__actions{
+            justify-content:flex-end;
+          }
         }
       `}</style>
 
-      {/* Header Godzilla-like */}
+      {/* HEADER */}
       <header className="watch__header">
         <div className="watch__logo">
-          <span className="watch__dot" />
           <span>VISIONPLUS</span>
         </div>
 
         <div className="watch__actions">
-          <button className="btn-secondary" onClick={() => navigate(-1)}>Volver</button>
-          <Link to="/" className="btn-primary">Salir</Link>
-          <Link to="/perfil" className="link">Perfil</Link>
-          <Link to="/notificaciones" className="link">Notificaciones</Link>
+          <button className="btn-secondary" onClick={() => navigate(-1)}>
+            Volver
+          </button>
+          <Link to="/" className="btn-primary">
+            Salir
+          </Link>
+          <Link to="/perfil" className="link">
+            Perfil
+          </Link>
+          <Link to="/notificaciones" className="link">
+            Notificaciones
+          </Link>
         </div>
       </header>
 
-      {/* Contenido */}
-      <main className="wrap">
-        <h1 style={{margin: "6px 0 12px 4px", fontSize: "clamp(18px,2.2vw,28px)"}}>
-          {data.title}
-        </h1>
+      {/* CONTENIDO */}
+      <main className="watch-main">
+        <h1 className="watch-title">{data.title}</h1>
 
         <div className="watch__panel">
           <video

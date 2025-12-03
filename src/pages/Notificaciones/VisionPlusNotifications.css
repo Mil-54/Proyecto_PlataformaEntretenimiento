@@ -9,16 +9,12 @@
   --line:#3b4454;
   --chip:#2a2f39;
 }
-
-/* PÁGINA */
 .vpnotif-page{
   background:var(--bg);
   min-height:100vh;
   color:var(--text);
   font-family:"Nunito Sans", system-ui;
 }
-
-/* HEADER */
 .vpnotif-header{
   height:72px;
   display:grid;

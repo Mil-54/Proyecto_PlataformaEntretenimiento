@@ -50,11 +50,7 @@ body{
   display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.3px;
   color:var(--glow); font-size:18px;
 }
-.logo::before{
-  content:""; width:20px; height:20px; border-radius:8px;
-  background:linear-gradient(135deg,var(--purple),var(--purple-2));
-  box-shadow:0 0 10px var(--glow);
-}
+
 .menu{ display:flex; gap:12px; }
 .menu a{
   color:var(--text); text-decoration:none; font-weight:800; font-size:.95rem;
@@ -78,11 +74,7 @@ body{
 }
 .user-menu{ display:flex; gap:16px; font-weight:800; }
 .user-menu a{ color:var(--text); text-decoration:none; }
-.user-menu a::before{
-  content:""; display:inline-block; width:7px; height:7px; border-radius:999px;
-  background:linear-gradient(135deg,var(--purple),var(--purple-2));
-  box-shadow:0 0 6px var(--glow); margin-right:8px;
-}
+
 
 .wrap{
   padding: clamp(12px,2.4vw,20px) 0;
@@ -150,17 +142,27 @@ body{
   display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px;
   background:rgba(199,125,255,.10); border:1px solid rgba(199,125,255,.26); font-weight:800; font-size:.78rem; color:var(--glow);
 }
-.rating{ display:inline-flex; align-items:center; gap:6px; font-weight:800; }
-.rating .dot{ width:8px; height:8px; background:var(--ok); border-radius:999px; box-shadow:0 0 6px var(--ok); }
+.rating{
+  font-weight:800;
+  color:var(--text);
+}
+
+
 .syn{ margin:10px 0 0; color:#d9dbe4; font-style:italic; max-width:90ch; }
 
 .bar{ margin-top:14px; padding:12px; border-radius:12px; background:var(--panel-2); border:1px solid rgba(199,125,255,.16); }
 .bar .row{ display:flex; gap:10px; flex-wrap:wrap; }
 .tag{
-  display:inline-flex; align-items:center; gap:8px; background:#0f131c;
-  border:1px solid rgba(199,125,255,.18); padding:10px 12px; border-radius:12px; font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  background:#0f131c;
+  border:1px solid rgba(199,125,255,.18);
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:800;
+  color:var(--text);
 }
-.tag .dot{ width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--purple),var(--purple-2)); }
+
 
 .player{
   margin-top:18px;
@@ -228,6 +230,14 @@ body{
   .player{ padding:18px 8px; }
   .player .ph{ width:92%; }
 }
+*{
+  box-shadow:none !important;
+}
+
+.dot{
+  display:none !important;
+}
+
 
       `}</style>
 

@@ -1,10 +1,10 @@
-/* Base y Fondo */
+
 body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #0d0115; /* Fondo muy oscuro, casi negro con un toque de púrpura */
-  color: #f0f0f0; /* Color de texto claro por defecto */
+  background-color: #0d0115; 
+  color: #f0f0f0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,6 @@ body {
   width: 100%;
 }
 
-/* Encabezado (Header) - MÁS GRANDE */
 .container .header {
   display: flex;
   justify-content: space-between;
@@ -32,15 +31,11 @@ body {
   z-index: 1000;
   box-sizing: border-box;
 }
-
-/* Marca de la aplicación (VisionPlus) - MÁS GRANDE */
 .container .brand {
   font-size: 2.0rem;
   font-weight: bold;
   color: #a872ff;
 }
-
-/* Botón Iniciar Sesión (.nav a) - MÁS GRANDE y ESTILIZADO */
 .container .nav a {
   font-family: 'Space Mono', 'Courier New', monospace;
   font-size: 1.2rem;
@@ -59,8 +54,6 @@ body {
   background-color: rgba(168, 114, 255, 0.15);
   color: #a872ff;
 }
-
-/* Sección Principal (Hero) - Centrado HORIZONTAL Y VERTICAL */
 .container .hero {
   flex-grow: 1;
   display: flex;
@@ -72,7 +65,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Recuadro Interior - GRANDE y ESPACIADO */
 .container .hero-inner {
   max-width: 800px;
   width: 90%;
@@ -83,7 +75,6 @@ body {
   border: 1px solid rgba(168, 114, 255, 0.2);
 }
 
-/* Tipografía Principal con Neón Opaco - GRANDE y ESPACIADO */
 .container .copy h1 {
   font-size: 4rem;
   font-weight: 700;
@@ -178,7 +169,6 @@ body {
   color: #f0f0f0;
 }
 
-/* Nota y Estado - MEJOR ESPACIO */
 .container .note {
   font-size: 1rem;
   color: #999;
@@ -194,8 +184,6 @@ body {
   color: #f7e0ff;
   font-weight: 500;
 }
-
-/* Media Queries para responsividad */
 @media (max-width: 768px) {
   .container .hero-inner {
     padding: 40px;

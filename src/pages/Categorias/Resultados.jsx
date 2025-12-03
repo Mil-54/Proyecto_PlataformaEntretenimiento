@@ -7,7 +7,6 @@ const Resultados = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Datos de ejemplo
     const ejemploPeliculas = [
       { titulo: "Película A", img: "https://placehold.co/300x200/9d4edd/FFFFFF?text=Película+A", id: "a" },
       { titulo: "Película B", img: "https://placehold.co/300x200/9d4edd/FFFFFF?text=Película+B", id: "b" },
@@ -30,8 +29,6 @@ const Resultados = () => {
     setIsOpen(false);
     setTimeout(() => window.history.back(), 300);
   };
-
-  // 👉 FUNCIÓN PARA ABRIR DETALLE
   const handleCardClick = (peliculaID) => {
     navigate(`/detail/${peliculaID}`);
   };
@@ -135,6 +132,13 @@ const Resultados = () => {
           font-size: 1rem;
           font-weight: 700;
         }
+          *{
+  box-shadow:none !important;
+}
+
+.dot{
+  display:none !important;
+}
       `}</style>
 
       <div

@@ -1,4 +1,4 @@
-// src/components/VisionPlusNotifications.jsx
+
 import React from "react";
 import "./VisionPlusNotifications.css";
 
@@ -8,7 +8,7 @@ export default function VisionPlusNotifications() {
   return (
     <div className="vpnotif-page">
 
-      {/* HEADER */}
+      {}
       <header className="vpnotif-header">
         <div className="vpnotif-brand">VISIONPLUS</div>
 
@@ -36,7 +36,7 @@ export default function VisionPlusNotifications() {
         </div>
       </header>
 
-      {/* BUSCADOR */}
+      {}
       <form
         className="vpnotif-search"
         onSubmit={onSearch}

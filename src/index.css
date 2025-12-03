@@ -64,3 +64,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.vp-footer{
+  margin-top:32px;
+  padding:16px 40px;
+  border-top:1px solid rgba(199,125,255,.3);
+  background:rgba(0,0,0,.4);
+  color:var(--i-muted);
+  font-size:.85rem;
+  text-align:center;
+}

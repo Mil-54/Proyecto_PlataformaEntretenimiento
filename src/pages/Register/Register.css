@@ -1,4 +1,4 @@
-/* src/paginas/Register.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;800&display=swap');
 
 :root {
@@ -8,8 +8,6 @@
   --color-texto: #d1d5db;
   --color-input: #1e293b;
 }
-
-/* ========= AISLAMIENTO TOTAL ============= */
 .register-page-body {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
@@ -19,8 +17,6 @@
   flex-direction: column;
   min-height: 100vh;
 }
-
-/* HEADER SOLO PARA REGISTER */
 .register-page-body header {
   display: flex;
   justify-content: space-between;
@@ -126,7 +122,6 @@
   box-shadow: 0 0 35px rgba(168, 85, 247, 0.9);
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
   .register-page-body .card {
     width: 90%;

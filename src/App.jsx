@@ -13,6 +13,7 @@ import TipoContenido from "./pages/Categorias/TipoContenido.jsx";
 import Inicio from "./pages/Inicio/Inicio.jsx";
 import VisionPlusPlan from "./pages/Plan/VisionPlusPlan.jsx";
 import VisionPlusChangePassword from "./pages/Password/VisionPlusChangePassword.jsx";
+import VisionPlusPayment from "./pages/Pago/VisionPlusPayment.jsx";
 
 // ⚠️ ESTO FALTABA
 import VisionPlusPerfil from "./pages/Perfil/VisionPlusPerfil.jsx";
@@ -30,6 +31,9 @@ function App() {
 
       {/* PLAN */}
       <Route path="/planes" element={<VisionPlusPlan />} />
+
+      {/* PAGO */}
+      <Route path="/pago/:plan" element={<VisionPlusPayment />} />
 
       {/* LOGIN */}
       <Route path="/login" element={<VisionPlusLogin />} />

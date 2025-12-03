@@ -1,4 +1,4 @@
-// src/pages/Login/VisionPlusLogin.jsx
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./VisionPlusLogin.css";
@@ -7,7 +7,6 @@ export default function VisionPlusLogin({ backgroundUrl = "fondo.jpg" }) {
 
   const navigate = useNavigate();
 
-  // Ir al inicio después de iniciar sesión
   function goDetail(e) {
     e.preventDefault();
     navigate("/inicio");
@@ -26,7 +25,6 @@ export default function VisionPlusLogin({ backgroundUrl = "fondo.jpg" }) {
     navigate("/register");
   }
 
-  // 👉 NUEVO: Ir a cambiar contraseña
   function goChangePassword(e) {
     e.preventDefault();
     navigate("/changepassword");
@@ -79,7 +77,7 @@ export default function VisionPlusLogin({ backgroundUrl = "fondo.jpg" }) {
                 Iniciar sesión
               </button>
 
-              {/* 🔥 Aquí ya está tu función */}
+              {}
               <a className="link" href="#" onClick={goChangePassword}>
                 ¿Olvidaste tu contraseña?
               </a>

@@ -1,15 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./VisionPlusPlan.css";
 
 export default function VisionPlusPlan() {
+  const navigate = useNavigate();
+
   const handleSelect = (plan) => {
-    console.log("Seleccionaste:", plan);
+    navigate(`/pago/${plan}`);
   };
 
   return (
     <div className="vpp-body">
 
-      {/* HEADER */}
+      {}
       <header className="vpp-header">
         <div className="vpp-brand">VISIONPLUS</div>
 
@@ -28,13 +31,13 @@ export default function VisionPlusPlan() {
         </div>
       </header>
 
-      {/* BUSCADOR */}
+      {}
       <form className="vpp-search" onSubmit={(e)=>e.preventDefault()}>
         <input type="search" placeholder="Buscar" />
         <button className="vpp-btn">🔍</button>
       </form>
 
-      {/* CONTENIDO */}
+      {}
       <main className="vpp-wrap">
 
         <div className="vpp-section-head">
@@ -44,7 +47,7 @@ export default function VisionPlusPlan() {
 
         <section className="vpp-pricing">
 
-          {/* FREE */}
+          {}
           <article className="vpp-card">
             <header>
               <div className="icon">📱</div>
@@ -66,7 +69,7 @@ export default function VisionPlusPlan() {
             </div>
           </article>
 
-          {/* PREMIUM */}
+          {}
           <article className="vpp-card">
             <header>
               <div className="icon">📱</div>
@@ -88,7 +91,7 @@ export default function VisionPlusPlan() {
             </div>
           </article>
 
-          {/* FAMILY */}
+          {}
           <article className="vpp-card">
             <header>
               <div className="icon">📱</div>

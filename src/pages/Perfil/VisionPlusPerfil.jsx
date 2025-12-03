@@ -1,9 +1,4 @@
 import React from "react";
-
-// Componente React que replica el diseño y estilos del archivo HTML original.
-// No requiere dependencias externas; los estilos se inyectan con una etiqueta <style>.
-// Inserta este componente en tu app y renderízalo donde lo necesites.
-
 export default function VisionPlusPerfil() {
   return (
     <div>
