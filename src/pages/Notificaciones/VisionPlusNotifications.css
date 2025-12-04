@@ -1,0 +1,165 @@
+:root{
+  --bg:#0e1117;
+  --panel:#141925;
+  --panel-2:#1a2030;
+  --purple:#9d4edd;
+  --purple-2:#7b2cbf;
+  --text:#e8eaf0;
+  --muted:#aeb3c2;
+  --line:#3b4454;
+  --chip:#2a2f39;
+}
+.vpnotif-page{
+  background:var(--bg);
+  min-height:100vh;
+  color:var(--text);
+  font-family:"Nunito Sans", system-ui;
+}
+.vpnotif-header{
+  height:72px;
+  display:grid;
+  grid-template-columns:220px 1fr 220px;
+  align-items:center;
+  gap:16px;
+  padding:0 24px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0)), var(--panel);
+  border-bottom:1px solid rgba(199,125,255,.20);
+}
+
+.vpnotif-brand{
+  font-weight:900;
+  font-size:1.6rem;
+  color:var(--purple);
+}
+
+.vpnotif-nav{
+  display:flex;
+  gap:18px;
+}
+
+.vpnotif-link{
+  color:#c9cbd1;
+  text-decoration:none;
+  padding:.35rem .55rem;
+  border-radius:10px;
+  font-weight:800;
+}
+.vpnotif-link:hover{
+  color:var(--text);
+  background:rgba(157,78,221,.15);
+}
+.vpnotif-link.active{
+  background:rgba(157,78,221,.25);
+}
+
+.vpnotif-actions{
+  display:flex;
+  gap:18px;
+}
+.vpnotif-link-icon{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  color:var(--purple);
+  font-weight:800;
+}
+
+/* BUSCADOR */
+.vpnotif-search{
+  display:flex;
+  align-items:center;
+  background:var(--panel-2);
+  border:1.5px solid rgba(199,125,255,.22);
+  padding:6px 10px;
+  border-radius:999px;
+  width:min(520px,70%);
+}
+.vpnotif-search input{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:var(--text);
+  outline:none;
+}
+.vpnotif-btn{
+  background:var(--purple);
+  border:0;
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+
+/* CONTENIDO */
+.vpnotif-wrap{
+  width:min(1100px,92%);
+  margin:32px auto;
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:12px;
+  padding:18px;
+}
+.vpnotif-section-head h2{
+  margin:0;
+  font-weight:900;
+}
+.vpnotif-hr{
+  height:1px;
+  background:#9ca3af44;
+  margin-bottom:12px;
+}
+
+/* TIMELINE */
+.vpnotif-timeline{
+  display:grid;
+  gap:22px;
+}
+.vpnotif-group{
+  display:grid;
+  gap:16px;
+}
+.vpnotif-date{
+  background:var(--chip);
+  padding:.45rem .8rem;
+  width:max-content;
+  margin:0 auto;
+  border-radius:10px;
+  font-weight:800;
+}
+.vpnotif-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:16px;
+}
+.vpnotif-msg{
+  background:var(--chip);
+  padding:.65rem .85rem;
+  border-radius:10px;
+  font-weight:700;
+}
+.vpnotif-time{
+  background:var(--chip);
+  padding:.45rem .65rem;
+  border-radius:10px;
+  font-weight:800;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px){
+  .vpnotif-header{
+    grid-template-columns:1fr auto auto;
+  }
+  .vpnotif-item{
+    grid-template-columns:1fr;
+  }
+  .vpnotif-time{
+    justify-self:end;
+  }
+}
