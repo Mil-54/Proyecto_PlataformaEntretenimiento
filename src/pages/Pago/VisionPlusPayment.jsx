@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./VisionPlusPayment.css";
 
@@ -8,25 +8,23 @@ const PLAN_NAMES = {
   FAMILY: "Plan FAMILY",
 };
 
-const PLAN_PRICES = {
-  FREE: 0,
-  PREMIUM: 120,
-  FAMILY: 180,
-};
-
 export default function VisionPlusPayment() {
   const { plan } = useParams();
   const navigate = useNavigate();
   const [method, setMethod] = useState("card");
 
-  const nombrePlan = PLAN_NAMES[plan] || "Plan seleccionado";
 
-  const precioPlan = PLAN_PRICES[plan] ?? 0;
-  const precioFormateado = new Intl.NumberFormat("es-MX", {
-    style: "currency",
-    currency: "MXN",
-    maximumFractionDigits: 0,
-  }).format(precioPlan);
+  const planKey = (plan || "").toUpperCase();
+
+  const nombrePlan = useMemo(() => {
+    return PLAN_NAMES[planKey] || "Plan seleccionado";
+  }, [planKey]);
+
+  const goToBusqueda = () => navigate("/busqueda");
+  const goToPerfil = () => navigate("/perfil");
+  const goToNotifications = () => navigate("/notificaciones");
+  const goToPlanes = () => navigate("/planes");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,37 +42,58 @@ export default function VisionPlusPayment() {
 
   return (
     <div className="vpay-page">
-      {/* NAVBAR */}
       <header className="inicio-navbar">
-        <div className="inicio-logo" onClick={() => navigate("/inicio")}>
+        {/* LOGO */}
+        <div className="inicio-logo brand" onClick={() => navigate("/inicio")} style={{ cursor: "pointer" }}>
           VISIONPLUS
         </div>
 
+        {/* NAVEGACIÓN (Inicio / Mi Plan) */}
         <nav className="inicio-nav">
-          <a onClick={() => navigate("/inicio")}>Inicio</a>
-          <a className="active" onClick={() => navigate("/planes")}>
+          <a href="#" onClick={(e) => { e.preventDefault(); navigate("/inicio"); }}>
+            Inicio
+          </a>
+          {/* El enlace a Mi plan está activo en esta página de pago */}
+          <a
+            href="#"
+            className="active"
+            onClick={(e) => { e.preventDefault(); goToPlanes(); }}
+          >
             Mi plan
           </a>
         </nav>
 
-        <div className="inicio-search-box">
-          <input type="text" placeholder="Buscar..." readOnly />
+        {/* BARRA DE BÚSQUEDA (El CSS maneja el margin: auto;) */}
+        <div className="inicio-search-box" onClick={goToBusqueda}>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            onFocus={goToBusqueda}
+            readOnly
+          />
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToBusqueda();
+            }}
+          >
+            🔍
+          </button>
         </div>
 
-        <div className="inicio-user">
-          <div onClick={() => navigate("/perfil")} style={{ cursor: "pointer" }}>
+        {/* ACCIONES DE USUARIO (Perfil / Notificaciones) */}
+        {/* Se usa la clase 'inicio-user' tal como está definida en tu CSS */}
+        <div className="inicio-user"> 
+          <div onClick={goToPerfil} style={{ cursor: "pointer" }}>
             Perfil
           </div>
-          <div
-            onClick={() => navigate("/notificaciones")}
-            style={{ cursor: "pointer" }}
-          >
+          <div onClick={goToNotifications} style={{ cursor: "pointer" }}>
             Notificaciones
           </div>
         </div>
       </header>
 
-      {/* CONTENIDO PRINCIPAL */}
       <main className="vpay-main">
         <section className="vpay-panel">
           <header className="vpay-header">
@@ -86,17 +105,11 @@ export default function VisionPlusPayment() {
           </header>
 
           <div className="vpay-layout">
-            {/* Resumen del plan */}
+            {/* Resumen */}
             <aside className="vpay-summary">
               <h3>Resumen del plan</h3>
               <div className="vpay-summary-card">
                 <div className="vpay-summary-title">{nombrePlan}</div>
-
-                {/* Precio del plan */}
-                <div className="vpay-summary-price">
-                  {precioFormateado} / mes
-                </div>
-
                 <ul>
                   <li>Acceso completo al catálogo</li>
                   <li>Calidad HD / 4K según el plan</li>
@@ -107,16 +120,15 @@ export default function VisionPlusPayment() {
               <button
                 type="button"
                 className="vpay-back"
-                onClick={() => navigate("/planes")}
+                onClick={goToPlanes}
               >
                 ← Cambiar de plan
               </button>
             </aside>
 
-            {/* Formulario de pago */}
+            {/* Form */}
             <section className="vpay-form-wrap">
               <form className="vpay-form" onSubmit={handleSubmit}>
-                {/* Botones de método */}
                 <div className="vpay-methods">
                   <button
                     type="button"
@@ -141,7 +153,7 @@ export default function VisionPlusPayment() {
                   </button>
                 </div>
 
-                {/* MÉTODO: TARJETA */}
+                {/* CARD */}
                 {method === "card" && (
                   <>
                     <div className="vpay-field">
@@ -186,7 +198,7 @@ export default function VisionPlusPayment() {
                   </>
                 )}
 
-                {/* MÉTODO: PAYPAL */}
+                {/* PAYPAL */}
                 {method === "paypal" && (
                   <>
                     <div className="vpay-field">
@@ -205,7 +217,7 @@ export default function VisionPlusPayment() {
                   </>
                 )}
 
-                {/* MÉTODO: CÓDIGO */}
+                {/* CODE */}
                 {method === "code" && (
                   <>
                     <div className="vpay-field">
