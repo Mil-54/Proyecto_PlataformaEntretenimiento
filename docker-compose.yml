@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./login-visionplus/backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+
+  frontend:
+    build: ./login-visionplus/frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend

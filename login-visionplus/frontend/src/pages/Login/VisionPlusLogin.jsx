@@ -16,8 +16,10 @@ export default function VisionPlusLogin({ backgroundUrl = "fondo.jpg" }) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
 
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

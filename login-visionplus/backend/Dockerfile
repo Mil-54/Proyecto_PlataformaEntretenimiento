@@ -1,25 +1,22 @@
-# Build stage
-FROM node:18-alpine AS builder
+FROM node:20-alpine
 
 WORKDIR /app
 
+# Instalar dependencias
 COPY package*.json ./
 RUN npm ci
 
+# Copiar código fuente
 COPY . .
+
+# Construir la aplicación
 RUN npm run build
 
-# Production stage
-FROM node:18-alpine
+# Limpiar dependencias de desarrollo
+RUN npm ci --only=production && npm cache clean --force
 
-WORKDIR /app
-
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-
-# Expose port 3000
+# Puerto
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "run", "start:prod"]
+# Comando de inicio
+CMD ["node", "dist/main"]
