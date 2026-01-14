@@ -9,8 +9,34 @@ const VideoPlayer = ({ videoId, libraryId, title }) => {
     // Si no se pasa libraryId, asumimos que el usuario lo configurará o lo pasará.
     // Por ahora usaremos un placeholder o props obligatorias.
 
-    if (!videoId || !libraryId) {
-        return <div className="text-white p-4">Error: Faltan datos del video (Library ID o Video ID)</div>;
+    // Check if videoId is a direct URL (for demo purposes)
+    const isDirectUrl = videoId && (videoId.includes('http') || videoId.includes('.mp4'));
+
+    if (!videoId) {
+        return <div className="text-white p-4">Error: Faltan datos del video</div>;
+    }
+
+    if (isDirectUrl) {
+        return (
+            <div className="w-full max-w-5xl mx-auto my-8">
+                {title && <h2 className="text-2xl text-white mb-4 font-bold">{title}</h2>}
+                <div className="relative pt-[56.25%] bg-black rounded-lg overflow-hidden shadow-2xl border border-gray-800">
+                    <video
+                        src={videoId}
+                        controls
+                        autoPlay
+                        className="absolute top-0 left-0 w-full h-full"
+                        style={{ objectFit: 'cover' }}
+                    >
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+            </div>
+        );
+    }
+
+    if (!libraryId) {
+        return <div className="text-white p-4">Error: Falta Library ID para Bunny.net</div>;
     }
 
     const embedUrl = `https://iframe.mediadelivery.net/embed/${libraryId}/${videoId}?autoplay=true&loop=false&muted=false&preload=true`;

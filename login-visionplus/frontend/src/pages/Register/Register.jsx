@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../config";
 import "./Register.css";
 
 export default function Register() {
@@ -17,7 +18,7 @@ export default function Register() {
       return;
     }
 
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 
     try {
       const response = await fetch(`${API_URL}/auth/register`, {

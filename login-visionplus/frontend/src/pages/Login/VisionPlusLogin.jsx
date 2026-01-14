@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../../config";
 import "./VisionPlusLogin.css";
 
 export default function VisionPlusLogin({ backgroundUrl = "fondo.jpg" }) {
@@ -16,7 +17,7 @@ export default function VisionPlusLogin({ backgroundUrl = "fondo.jpg" }) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
 
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 
     try {
       const response = await fetch(`${API_URL}/auth/login`, {

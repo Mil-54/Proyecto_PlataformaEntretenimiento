@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import API_URL from "../../config";
 
 const Resultados = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,7 +19,7 @@ const Resultados = () => {
         return;
       }
 
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
       let endpoint = "/movies/popular"; // Default
 
       if (tipo === "series") {

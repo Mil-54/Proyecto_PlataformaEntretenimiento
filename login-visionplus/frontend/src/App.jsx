@@ -18,6 +18,7 @@ import VisionPlusPayment from "./pages/Pago/VisionPlusPayment.jsx";
 // ⚠️ ESTO FALTABA
 import VisionPlusPerfil from "./pages/Perfil/VisionPlusPerfil.jsx";
 import VisionPlusNotifications from "./pages/Notificaciones/VisionPlusNotifications.jsx";
+import AddVideo from "./pages/Admin/AddVideo.jsx";
 
 function App() {
   const navigate = useNavigate();
@@ -67,6 +68,9 @@ function App() {
       {/* ⚠️ ESTO ES LO QUE HACÍA FALTA */}
       <Route path="/perfil" element={<VisionPlusPerfil />} />
       <Route path="/notificaciones" element={<VisionPlusNotifications />} />
+
+      {/* ADMIN - SECRETO */}
+      <Route path="/admin/add-video" element={<AddVideo />} />
 
     </Routes>
   );
