@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Instalar dependencias
 COPY package*.json ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 # Copiar código fuente
 COPY . .
@@ -13,10 +13,10 @@ COPY . .
 RUN npm run build
 
 # Limpiar dependencias de desarrollo
-RUN npm ci --only=production && npm cache clean --force
+RUN npm install --only=production --legacy-peer-deps && npm cache clean --force
 
 # Puerto
 EXPOSE 3000
 
-# Comando de inicio
-CMD ["node", "dist/main"]
+# Comando de inicio (Cluster: LB + 2 Backends)
+CMD ["node", "start-cluster.js"]

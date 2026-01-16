@@ -28,6 +28,11 @@ export class VideosService {
             title: 'Sintel (Demo)',
             type: 'mp4'
         },
+        999: { // HLS Test
+            url: 'http://localhost:3000/uploads/hls/playlist.m3u8',
+            title: 'HLS Stream (Local)',
+            type: 'hls'
+        },
         default: {
             url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
             title: 'Sintel (Default)',

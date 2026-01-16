@@ -1,4 +1,5 @@
 import React from 'react';
+import Hls from 'hls.js';
 
 const VideoPlayer = ({ videoId, libraryId, title, className }) => {
     // Construir la URL del embed de Bunny.net.
@@ -16,7 +17,37 @@ const VideoPlayer = ({ videoId, libraryId, title, className }) => {
         return <div className="text-white p-4">Error: Faltan datos del video</div>;
     }
 
-    if (isDirectUrl) {
+
+
+    // HLS Logic
+    const isHls = videoId && videoId.includes('.m3u8');
+    const videoRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (isHls && videoRef.current) {
+            // Importar Hls dinámicamente si es posible, o usar el global si se importó arriba.
+            // Asumiremos que Hls está importado.
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(videoId);
+                hls.attachMedia(videoRef.current);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    videoRef.current.play().catch(e => console.log("Autoplay prevented", e));
+                });
+                return () => {
+                    hls.destroy();
+                };
+            } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+                // Safari nativo
+                videoRef.current.src = videoId;
+                videoRef.current.addEventListener('loadedmetadata', () => {
+                    videoRef.current.play();
+                });
+            }
+        }
+    }, [videoId, isHls]);
+
+    if (isDirectUrl || isHls) {
         return (
             <div className={`relative w-full h-full bg-black group ${className || ''}`}>
                 {title && (
@@ -26,7 +57,8 @@ const VideoPlayer = ({ videoId, libraryId, title, className }) => {
                 )}
                 <div className="w-full h-full relative">
                     <video
-                        src={videoId}
+                        ref={videoRef}
+                        src={!isHls ? videoId : undefined}
                         controls
                         autoPlay
                         className="w-full h-full object-cover"
